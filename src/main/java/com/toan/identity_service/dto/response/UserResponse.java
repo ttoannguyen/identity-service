@@ -1,7 +1,7 @@
 package com.toan.identity_service.dto.response;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -24,5 +24,5 @@ public class UserResponse {
     String firstName;
     String lastName;
     LocalDate dob;
-    List<String> roles;
+    Set<RoleResponse> roles;
 }
