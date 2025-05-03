@@ -1,6 +1,7 @@
 package com.toan.identity_service.dto.response;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -20,8 +21,8 @@ import lombok.experimental.FieldDefaults;
 public class UserResponse {
     String id;
     String username;
-    String password;
     String firstName;
     String lastName;
     LocalDate dob;
+    Set<String> roles;
 }

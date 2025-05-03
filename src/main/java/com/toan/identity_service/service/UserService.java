@@ -1,8 +1,8 @@
 package com.toan.identity_service.service;
 
+import java.util.HashSet;
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,7 @@ import com.toan.identity_service.dto.request.UserCreateRequest;
 import com.toan.identity_service.dto.request.UserUpdateRequest;
 import com.toan.identity_service.dto.response.UserResponse;
 import com.toan.identity_service.entity.User;
+import com.toan.identity_service.enums.Role;
 import com.toan.identity_service.exception.AppException;
 import com.toan.identity_service.exception.ErrorCode;
 import com.toan.identity_service.mapper.UserMapper;
@@ -26,6 +27,7 @@ public class UserService {
 
     UserRepository userRepository;
     UserMapper userMapper;
+    PasswordEncoder passwordEncoder;
 
     public UserResponse createUser(UserCreateRequest request) {
         if (userRepository.existsByUsername(request.getUsername()))
@@ -33,8 +35,12 @@ public class UserService {
 
         User user = userMapper.toUser(request);
 
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        HashSet<String> roles = new HashSet<>();
+        roles.add(Role.USER.name());
+
+        user.setRoles(roles);
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
