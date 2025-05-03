@@ -1,8 +1,5 @@
 package com.toan.identity_service.dto.request;
 
-import java.time.LocalDate;
-
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserCreateRequest {
-    @Size(min = 3, message = "USERNAME_INVALID")
-    String username;
-    @Size(min = 8, message = "INVALID_PASSWORD")
-    String password;
-    String firstName;
-    String lastName;
-    LocalDate dob;
+public class IntrospectRequest {
+    String token;
 }

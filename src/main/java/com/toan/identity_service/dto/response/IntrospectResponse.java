@@ -1,6 +1,4 @@
-package com.toan.identity_service.dto.request;
-
-import java.time.LocalDate;
+package com.toan.identity_service.dto.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,9 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateRequest {
-    String password;
-    String firstName;
-    String lastName;
-    LocalDate dob;
+public class IntrospectResponse {
+    boolean valid;
 }
