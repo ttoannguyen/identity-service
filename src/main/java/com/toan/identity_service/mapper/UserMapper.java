@@ -12,12 +12,13 @@ import com.toan.identity_service.entity.User;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     User toUser(UserCreateRequest request);
 
     UserResponse toUserResponse(User user);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "username", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
-
 }
