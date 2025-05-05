@@ -2,6 +2,8 @@ package com.toan.identity_service.dto.request;
 
 import java.time.LocalDate;
 
+import com.toan.identity_service.validator.DobConstraint;
+
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,5 +24,6 @@ public class UserCreateRequest {
     String password;
     String firstName;
     String lastName;
+    @DobConstraint(min = 10, message = "INVALID_DOB")
     LocalDate dob;
 }
